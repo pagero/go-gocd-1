@@ -82,7 +82,7 @@ func (c *DefaultClient) GetAllAgents() ([]*Agent, error) {
 		Embedded EmbeddedObj `json:"_embedded"`
 	}
 	res := new(AllAgentsResponse)
-	headers := map[string]string{"Accept": "application/vnd.go.cd.v6+json"}
+	headers := map[string]string{"Accept": "application/vnd.go.cd+json"}
 	err := c.getJSON("/go/api/agents", headers, res)
 	if err != nil {
 		return []*Agent{}, err
@@ -93,7 +93,7 @@ func (c *DefaultClient) GetAllAgents() ([]*Agent, error) {
 // GetAgent - Gets an agent by its unique identifier (uuid)
 func (c *DefaultClient) GetAgent(uuid string) (*Agent, error) {
 	res := new(Agent)
-	headers := map[string]string{"Accept": "application/vnd.go.cd.v6+json"}
+	headers := map[string]string{"Accept": "application/vnd.go.cd+json"}
 	err := c.getJSON(fmt.Sprintf("/go/api/agents/%s", uuid), headers, res)
 	if err != nil {
 		return nil, err
@@ -105,7 +105,7 @@ func (c *DefaultClient) GetAgent(uuid string) (*Agent, error) {
 // Returns the updated agent properties
 func (c *DefaultClient) UpdateAgent(uuid string, agent *Agent) (*Agent, error) {
 	res := new(Agent)
-	headers := map[string]string{"Accept": "application/vnd.go.cd.v6+json"}
+	headers := map[string]string{"Accept": "application/vnd.go.cd+json"}
 	err := c.patchJSON(fmt.Sprintf("/go/api/agents/%s", uuid), headers, agent, res)
 	if err != nil {
 		return nil, err
@@ -140,7 +140,7 @@ func (c *DefaultClient) DeleteAgent(uuid string) error {
 
 	_, _, errs := c.Request.
 		Delete(c.resolve(fmt.Sprintf("/go/api/agents/%s", uuid))).
-		Set("Accept", "application/vnd.go.cd.v6+json").
+		Set("Accept", "application/vnd.go.cd+json").
 		End()
 	if len(errs) > 0 {
 		errors = multierror.Append(errors, errs...)
