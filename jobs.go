@@ -108,10 +108,10 @@ type JobRunHistory struct {
 }
 
 // GetJobHistory - The job history allows users to list job instances of specified job. Supports pagination using offset which tells the API how many instances to skip.
-func (c *DefaultClient) GetJobHistory(pipeline, stage, job string, offset int) ([]*JobHistory, error) {
+func (c *DefaultClient) GetJobHistory(pipeline, stage, job string) ([]*JobHistory, error) {
 	var errors *multierror.Error
 	_, body, errs := c.Request.
-		Get(c.resolve(fmt.Sprintf("/go/api/jobs/%s/%s/%s/history/%d", pipeline, stage, job, offset))).
+		Get(c.resolve(fmt.Sprintf("/go/api/jobs/%s/%s/%s/history", pipeline, stage, job))).
 		Set("Accept", "application/vnd.go.cd+json").
 		End()
 	if errs != nil {
