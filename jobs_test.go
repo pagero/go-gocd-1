@@ -29,9 +29,9 @@ func TestGetScheduledJobs(t *testing.T) {
 
 func TestGetJobHistory(t *testing.T) {
 	t.Parallel()
-	client, server := newTestAPIClient("/go/api/jobs/pipeline/stage/job/history/0", serveFileAsJSON(t, "GET", "test-fixtures/get_job_history.json", 0, DummyRequestBodyValidator))
+	client, server := newTestAPIClient("/go/api/jobs/pipeline/stage/job/history", serveFileAsJSON(t, "GET", "test-fixtures/get_job_history.json", 0, DummyRequestBodyValidator))
 	defer server.Close()
-	jobs, err := client.GetJobHistory("pipeline", "stage", "job", 0)
+	jobs, err := client.GetJobHistory("pipeline", "stage", "job")
 	assert.NoError(t, err)
 	assert.NotNil(t, jobs)
 	assert.Equal(t, 2, len(jobs))
@@ -54,11 +54,11 @@ func TestGetJobHistory(t *testing.T) {
 
 func TestGetJobHistoryError(t *testing.T) {
 	t.Parallel()
-	client, server := newTestAPIClient("/go/api/jobs/pipeline/stage/job/history/0", func(w http.ResponseWriter, _ *http.Request) {
+	client, server := newTestAPIClient("/go/api/jobs/pipeline/stage/job/history", func(w http.ResponseWriter, _ *http.Request) {
 		w.Write([]byte("invalid json"))
 	})
 	defer server.Close()
-	if _, err := client.GetJobHistory("pipeline", "stage", "job", 0); err == nil {
+	if _, err := client.GetJobHistory("pipeline", "stage", "job"); err == nil {
 		t.Error("expected an error")
 	}
 }

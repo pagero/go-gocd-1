@@ -24,7 +24,7 @@ type Client interface {
 
 	// Jobs API
 	GetScheduledJobs() ([]*ScheduledJob, error)
-	GetJobHistory(pipeline, stage, job string, offset int) ([]*JobHistory, error)
+	GetJobHistory(pipeline, stage, job string) ([]*JobHistory, error)
 
 	// Environment Config API
 	GetAllEnvironmentConfigs() ([]*EnvironmentConfig, error)
