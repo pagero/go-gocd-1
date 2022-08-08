@@ -24,8 +24,12 @@ type Agent struct {
 		StageName    string `json:"stage_name,omitempty"`
 		JobName      string `json:"job_name,omitempty"`
 	} `json:"build_details,omitempty"`
-	Resources []string `json:"resources,omitempty"`
-	Env       []string `json:"environments,omitempty"`
+	Resources []string           `json:"resources,omitempty"`
+	Env       []AgentEnvironment `json:"environments,omitempty"`
+}
+
+type AgentEnvironment struct {
+	Name string `json:"name"`
 }
 
 type AgentJobHistory struct {
