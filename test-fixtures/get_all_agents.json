@@ -30,8 +30,41 @@
         "agent_config_state": "Enabled",
         "agent_state": "Idle",
         "build_state": "Idle",
-        "resources": ["java", "linux", "firefox"],
-        "environments": ["perf", "UAT"]
+        "resources": [
+          "java",
+          "linux",
+          "firefox"
+        ],
+        "environments": [
+          {
+            "name": "perf",
+            "origin": {
+              "type": "gocd",
+              "_links": {
+                "self": {
+                  "href": "https://ci.example.com/go/admin/config_xml"
+                },
+                "doc": {
+                  "href": "https://api.gocd.org/#get-configuration"
+                }
+              }
+            }
+          },
+          {
+            "name": "UAT",
+            "origin": {
+              "type": "gocd",
+              "_links": {
+                "self": {
+                  "href": "https://ci.example.com/go/admin/config_xml"
+                },
+                "doc": {
+                  "href": "https://api.gocd.org/#get-configuration"
+                }
+              }
+            }
+          }
+        ]
       }
     ]
   }

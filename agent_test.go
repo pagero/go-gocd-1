@@ -27,7 +27,8 @@ func TestGetAllAgents(t *testing.T) {
 	assert.Equal(t, "Idle", agent1.AgentState)
 	assert.Equal(t, "Idle", agent1.BuildState)
 	assert.Equal(t, []string{"java", "linux", "firefox"}, agent1.Resources)
-	assert.Equal(t, []string{"perf", "UAT"}, agent1.Env)
+	assert.Equal(t, "perf", agent1.Env[0].Name)
+	assert.Equal(t, "UAT", agent1.Env[1].Name)
 }
 
 func TestGetAgent(t *testing.T) {
@@ -46,7 +47,8 @@ func TestGetAgent(t *testing.T) {
 	assert.Equal(t, "Idle", agent.AgentState)
 	assert.Equal(t, "Idle", agent.BuildState)
 	assert.Equal(t, []string{"java", "linux", "firefox"}, agent.Resources)
-	assert.Equal(t, []string{"perf", "UAT"}, agent.Env)
+	assert.Equal(t, "perf", agent.Env[0].Name)
+	assert.Equal(t, "UAT", agent.Env[1].Name)
 }
 
 func TestUpdateAgent(t *testing.T) {
