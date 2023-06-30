@@ -32,4 +32,8 @@ type Client interface {
 
 	// Server health
 	GetServerHealthMessages() ([]*ServerHealthMessage, error)
+
+	// Roles API
+	GetAllRoles() ([]*Role, error)
+	BulkUpdateRoles([]*RoleBulkOperation) ([]*Role, error)
 }
